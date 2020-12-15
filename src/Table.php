@@ -109,7 +109,7 @@ class Table
         $data = array_values($data);
         $line = $separator;
         foreach ($tdMaxWide as $key => $val) {
-            $value = $data[$key];
+            $value = isset($data[$key]) ? $data[$key] : "-";
             $line .= str_repeat(' ', floor(($val - self::getStrWide($value)) / 2)) . $value . str_repeat(' ', ceil(($val - self::getStrWide($value)) / 2)) . $separator;
         }
         self::outPut($line);
