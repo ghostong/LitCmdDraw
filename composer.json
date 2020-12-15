@@ -1,0 +1,27 @@
+{
+  "name": "lit/CmdDraw",
+  "description": "命令行绘画",
+  "authors": [
+    {
+      "name": "litong",
+      "email": "ghostong@126.com"
+    }
+  ],
+  "keywords": [
+    "cmd",
+    "draw",
+    "命令行",
+    "绘画"
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "ext-mbstring": "*"
+  },
+  "minimum-stability": "stable",
+  "autoload": {
+    "files": [],
+    "psr-4": {
+      "Lit\\CmdDraw\\": "src"
+    }
+  }
+}
