@@ -10,7 +10,6 @@ class ProgressBar
     private static $notFinished = '-';
     private static $finished = '>';
     private static $defBar = '[%s%s] (%d%%)';
-    private static $lastShow = '';
 
     /**
      * 首屏显示,等待数据加载
@@ -45,12 +44,7 @@ class ProgressBar
     }
 
     private static function output($str) {
-        echo self::backSpace(self::$lastShow) . $str;
-        self::$lastShow = $str;
-    }
-
-    private static function backSpace($str) {
-        return str_repeat(chr(8), strlen($str));
+        echo "\r" . $str;
     }
 
 }
