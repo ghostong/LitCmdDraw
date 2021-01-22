@@ -21,3 +21,11 @@ $middleSeparator = "+"; //中线线分割组成
 for ($i = 0; $i <= 9999; $i++) {
     \Lit\CmdDraw\ProgressBar::loopShow($i, 9999); //每完成一次逻辑调用就执行一次
 }
+
+//带详细信息的进度条
+\Lit\CmdDraw\RollingBar::firstShow();
+$time = time();
+for ($i = 0; $i <= 100; $i++) {
+    \Lit\CmdDraw\RollingBar::loopShow($i, 100, $i . " hhahaha", $time);
+    usleep(150000);
+}

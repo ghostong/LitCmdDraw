@@ -18,8 +18,9 @@ class ProgressBar
      * @return void
      * @author litong
      */
-    public static function firstShow($screenWidth) {
-        $bar = sprintf(self::$defBar, str_repeat(self::$notFinished, $screenWidth), '', 0);
+    public static function firstShow($screenWidth = 100) {
+        self::$screenWidth = $screenWidth;
+        $bar = sprintf(self::$defBar, str_repeat(self::$notFinished, self::$screenWidth), '', 0);
         self::output($bar);
     }
 
