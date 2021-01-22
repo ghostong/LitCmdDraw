@@ -26,6 +26,12 @@ for ($i = 0; $i <= 9999; $i++) {
 \Lit\CmdDraw\RollingBar::firstShow();
 $time = time();
 for ($i = 0; $i <= 100; $i++) {
-    \Lit\CmdDraw\RollingBar::loopShow($i, 100, $i . " hhahaha", $time);
+    \Lit\CmdDraw\RollingBar::loopShow($i, 100, uniqid($i, true), $time);
     usleep(150000);
 }
+
+//佛陀
+\Lit\CmdDraw\Artist::buddha('永 无 B U G');
+
+//键盘
+\Lit\CmdDraw\Artist::keyboard('永 无 B U G');
