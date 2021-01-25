@@ -11,6 +11,8 @@ class RollingBar
     private static $finished = '>';
     private static $defBar = '[%s%s] (%d%% / %s)';
     private static $lastBarLen = 0;
+    private static $lastTime = 0;
+    private static $remaining = "-:-";
 
     /**
      * 首屏显示,等待数据加载
@@ -19,7 +21,7 @@ class RollingBar
      * @author litong
      */
     public static function firstShow() {
-        $bar = sprintf(self::$defBar, str_repeat(self::$notFinished, self::$screenWidth), '', 0, "-:-");
+        $bar = sprintf(self::$defBar, str_repeat(self::$notFinished, self::$screenWidth), '', 0, self::$remaining);
         self::output(str_repeat(PHP_EOL, 50), $bar);
     }
 
@@ -41,8 +43,11 @@ class RollingBar
             $finishedLen = round($currentLen / $totalLen, 2) * self::$screenWidth;
             $notFinishedLen = self::$screenWidth - $finishedLen;
         }
-        $remaining = self::getRemainTime($startTimeStamp, $currentLen, $totalLen);
-        $bar = sprintf(self::$defBar, str_repeat(self::$finished, $finishedLen), str_repeat(self::$notFinished, $notFinishedLen), $finishedLen, $remaining);
+        if (self::$lastTime != time()) {
+            self::$remaining = self::getRemainTime($startTimeStamp, $currentLen, $totalLen);
+            self::$lastTime = time();
+        }
+        $bar = sprintf(self::$defBar, str_repeat(self::$finished, $finishedLen), str_repeat(self::$notFinished, $notFinishedLen), $finishedLen, self::$remaining);
         self::output($lineStr, $bar);
     }
 
