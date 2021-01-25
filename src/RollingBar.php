@@ -10,9 +10,9 @@ class RollingBar
     private static $notFinished = '-';
     private static $finished = '>';
     private static $defBar = '[%s%s] (%d%% / %s)';
+    private static $defUSeTime = "-:-";
     private static $lastBarLen = 0;
-    private static $lastTime = 0;
-    private static $remaining = "-:-";
+    private static $startTime = 0;
 
     /**
      * 首屏显示,等待数据加载
@@ -21,7 +21,7 @@ class RollingBar
      * @author litong
      */
     public static function firstShow() {
-        $bar = sprintf(self::$defBar, str_repeat(self::$notFinished, self::$screenWidth), '', 0, self::$remaining);
+        $bar = sprintf(self::$defBar, str_repeat(self::$notFinished, self::$screenWidth), '', 0, self::$defUSeTime);
         self::output(str_repeat(PHP_EOL, 50), $bar);
     }
 
@@ -31,11 +31,10 @@ class RollingBar
      * @param $currentLen
      * @param $totalLen
      * @param $lineStr
-     * @param $startTimeStamp
      * @return void
      * @author litong
      */
-    public static function loopShow($currentLen, $totalLen, $lineStr, $startTimeStamp) {
+    public static function loopShow($currentLen, $totalLen, $lineStr) {
         if ($currentLen == $totalLen) {
             $finishedLen = self::$screenWidth;
             $notFinishedLen = 0;
@@ -43,21 +42,19 @@ class RollingBar
             $finishedLen = round($currentLen / $totalLen, 2) * self::$screenWidth;
             $notFinishedLen = self::$screenWidth - $finishedLen;
         }
-        if (self::$lastTime != time()) {
-            self::$remaining = self::getRemainTime($startTimeStamp, $currentLen, $totalLen);
-            self::$lastTime = time();
-        }
-        $bar = sprintf(self::$defBar, str_repeat(self::$finished, $finishedLen), str_repeat(self::$notFinished, $notFinishedLen), $finishedLen, self::$remaining);
+        $bar = sprintf(self::$defBar, str_repeat(self::$finished, $finishedLen), str_repeat(self::$notFinished, $notFinishedLen), $finishedLen, self::getUseTime());
         self::output($lineStr, $bar);
     }
 
-    private static function getRemainTime($startTime, $currentLen, $totalLen) {
-        $use = time() - $startTime;
-        if ($use > 0) {
-            $t = round(($use / ($currentLen / $totalLen)) - $use);
+    private static function getUseTime() {
+        if (!(self::$startTime > 0)) {
+            self::$startTime = time();
+        }
+        $t = time() - self::$startTime;
+        if ($t > 0) {
             return sprintf('%02d', floor($t / 60)) . ":" . sprintf('%02d', ($t % 60));
         } else {
-            return "-:-";
+            return self::$defUSeTime;
         }
     }
 
