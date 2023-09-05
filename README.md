@@ -60,8 +60,8 @@ for ($i = 0; $i <= 100; $i++) {
 }
 ````
 
-
 ### 画家
+
 ````php
 //佛陀效果
 //                   _ooOoo_
@@ -106,4 +106,16 @@ for ($i = 0; $i <= 100; $i++) {
 //                          永 无 B U G
 //键盘
 \Lit\CmdDraw\Artist::keyboard('永 无 B U G');
+````
+
+### 输出
+
+````php
+//行内输出文字
+//效果 38
+for ($i = 10; $i >= 0; $i--) {;
+    usleep(500000);
+    \Lit\CmdDraw\Output::rowRepeat(rand(0,999));
+}
+echo "\n";
 ````
