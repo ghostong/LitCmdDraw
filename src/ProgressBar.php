@@ -37,7 +37,7 @@ class ProgressBar
             $finishedLen = self::$screenWidth;
             $notFinishedLen = 0;
         } else {
-            $finishedLen = round($currentLen / $totalLen, 2) * self::$screenWidth;
+            $finishedLen = round($currentLen / $totalLen * self::$screenWidth, 0);
             $notFinishedLen = self::$screenWidth - $finishedLen;
         }
         $bar = sprintf(self::$defBar, str_repeat(self::$finished, $finishedLen), str_repeat(self::$notFinished, $notFinishedLen), $finishedLen);
