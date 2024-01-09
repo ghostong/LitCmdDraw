@@ -19,7 +19,9 @@
   },
   "minimum-stability": "stable",
   "autoload": {
-    "files": [],
+    "files": [
+      "CmdDrawHelper.php"
+    ],
     "psr-4": {
       "Lit\\CmdDraw\\": "src"
     }
