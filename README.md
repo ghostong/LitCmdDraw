@@ -119,3 +119,48 @@ for ($i = 10; $i >= 0; $i--) {;
 }
 echo "\n";
 ````
+
+````php
+//行内倒计时10秒并输出
+\Lit\CmdDraw\Output::sleep(10);
+````
+
+### 彩色文字
+
+````php
+//输出绿色文字
+\Lit\CmdDraw\StyleOutput::success('操作成功');
+````
+
+````php
+//输出蓝色文字
+\Lit\CmdDraw\StyleOutput::info('输出进度');
+````
+
+````php
+//输出黄色文字
+\Lit\CmdDraw\StyleOutput::warning('请注意');
+````
+
+````php
+//输出红色文字
+\Lit\CmdDraw\StyleOutput::error('出现错误');
+````
+
+````php
+//输出自定义样式
+\Lit\CmdDraw\StyleOutput::error('出现错误');
+````
+
+````php
+//自定义输出文字
+echo \Lit\CmdDraw\StyleOutput::apply(
+    '操作失误',
+    \Lit\CmdDraw\StyleOutput::FOREGROUND_COLORS_MAGENTA,
+    \Lit\CmdDraw\StyleOutput::BACKGROUND_COLORS_GREEN,
+    [
+        \Lit\CmdDraw\StyleOutput::OPTION_STYLE_BOLD, 
+        \Lit\CmdDraw\StyleOutput::OPTION_STYLE_UNDERSCORE
+    ]
+);
+````

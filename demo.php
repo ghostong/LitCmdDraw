@@ -37,7 +37,30 @@ for ($i = 0; $i <= 100; $i++) {
 \Lit\CmdDraw\Artist::keyboard('永 无 B U G');
 
 //行内输出文字
-for ($i = 10; $i >= 0; $i--) {;
+for ($i = 10; $i >= 0; $i--) {
     usleep(500000);
-    \Lit\CmdDraw\Output::rowRepeat(rand(0,999));
+    \Lit\CmdDraw\Output::rowRepeat(rand(0, 999));
 }
+
+//行内倒计时10秒并输出
+\Lit\CmdDraw\Output::sleep(10);
+
+//输出绿色文字
+\Lit\CmdDraw\StyleOutput::success('操作成功');
+
+//输出蓝色文字
+\Lit\CmdDraw\StyleOutput::info('输出进度');
+
+//输出黄色文字
+\Lit\CmdDraw\StyleOutput::warning('请注意');
+
+//输出红色文字
+\Lit\CmdDraw\StyleOutput::error('出现错误');
+
+//自定义输出文字
+echo \Lit\CmdDraw\StyleOutput::apply(
+    '操作失误',
+    \Lit\CmdDraw\StyleOutput::FOREGROUND_COLORS_MAGENTA,
+    \Lit\CmdDraw\StyleOutput::BACKGROUND_COLORS_GREEN,
+    [\Lit\CmdDraw\StyleOutput::OPTION_STYLE_BOLD, \Lit\CmdDraw\StyleOutput::OPTION_STYLE_UNDERSCORE]
+);
