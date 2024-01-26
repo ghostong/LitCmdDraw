@@ -29,6 +29,7 @@ class Output
             self::rowRepeat($i);
             sleep(1);
         }
+        echo "\n";
     }
 
 }
