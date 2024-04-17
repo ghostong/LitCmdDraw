@@ -164,3 +164,21 @@ echo \Lit\CmdDraw\StyleOutput::apply(
     ]
 );
 ````
+
+### 生成一张带字母的图片
+
+````php
+$textPictures = new TextPictures();
+$textPictures
+    ->text(rand(0, 9)) // 文字
+    ->textColor([255, 255, 255]) // 文字颜色
+    ->textFont(__DIR__ . '/data/fonts/SourceCodePro-Regular.ttf') // 字体
+    ->fontSize(110) // 字号
+    ->textOffsetX(-5) // 设置x轴偏移
+    ->textOffsetY(-5) // 设置y轴偏移
+    ->imageColor([64, 158, 255]) // 背景颜色
+    ->imageHeight(200) // 背景高度
+    ->imageWidth(200) //背景宽度
+    ->savePath('./a.png') //保存路径
+    ->createImage();
+````

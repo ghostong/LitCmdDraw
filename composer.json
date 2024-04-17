@@ -15,7 +15,8 @@
   ],
   "require": {
     "php": ">=5.6.0",
-    "ext-mbstring": "*"
+    "ext-mbstring": "*",
+    "ext-gd": "*"
   },
   "minimum-stability": "stable",
   "autoload": {
